@@ -1,1 +1,23 @@
-source
+#include <string.h>
+#include <stdio.h>
+#include <unistd.h>
+#include <stdlib.h>
+
+int			main(int argc, char **argv) {
+	char	*shell_path;
+	gid_t	gid;
+	uid_t	uid;
+
+	if (atoi(argv[1]) != 423) {
+		fwrite("No !\n", 1, 5, stderr);
+    }
+	else {
+		shell_path = strdup("/bin/sh");
+		gid = getegid();
+		uid = geteuid();
+		setresgid(gid, gid, gid);
+		setresuid(uid, uid, uid);
+		execv("/bin/sh", &shell_path);
+	}
+	return (0);
+}

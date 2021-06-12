@@ -1,1 +1,31 @@
-source
+#include <stdio.h>
+#include <time.h>
+#include <stdlib.h>
+
+char password[80];
+
+void m()
+{
+  printf("%s - %d\n", password, time(0));
+}
+
+int main(int argc,char **argv)
+{
+  char *str1;
+  char *str2;
+  FILE *fs;
+
+  str1 = (char *)malloc(8);
+  *str1 = 1;
+
+  str2 = (char *)malloc(8);
+  *str2 = 2;
+
+  strcpy(str1[1], argv[1]);
+  strcpy(str2[1], argv[2]);
+
+  fs = fopen("/home/user/level8/.pass","r");
+  fgets(password, 68, fs);
+  puts("~~");
+  return (0);
+}

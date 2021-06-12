@@ -1,30 +1,30 @@
 #include <stdlib.h>
 #include <string.h>
 
-char	*p(char *s, char *str)
+char	*p(char *ss, char *str)
 {
-	char	buffer[4096];
+	char	buf[4096];
 
 	puts(str);
-	read(0, buffer, 4096);
-	*strchr(buffer, '\n') = 0;
-	return (strncpy(s, buffer, 20));
+	read(0, buf, 4096);
+	*strchr(buf, '\n') = 0;
+	return (strncpy(ss, buf, 20));
 }
 
 char	*pp(char *major)
 {
-	char			b[20];
 	char			a[20];
+	char			b[20];
 	unsigned int	len;
 
 	p(a, " - ");
 	p(b, " - ");
 	strcpy(major, a);
 
-	len = strlen(major;
+	len = strlen(major);
 
-	buffer[len] = ' ';
-	buffer[len + 1] = 0;
+	major[len] = ' ';
+	major[len + 1] = 0;
 	return (strcat(major, b));
 }
 

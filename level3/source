@@ -1,1 +1,23 @@
-source
+#include <stdio.h>
+#include <stdlib.h>
+
+static char	str[] = "Wait what?!\n";
+static int			to_over = 0;
+
+void	v()
+{
+	char			b[512];
+
+	fgets(b, 512, stdin);
+	printf("%s", b);
+	if (to_over == 64) {
+		fwrite(str, 12, 1, stdout);
+		system("/bin/sh");
+	}
+}
+
+int		main()
+{
+	v();
+    return (0);
+}

@@ -1,1 +1,26 @@
-source
+#include <stdio.h>
+#include <stdlib.h>
+
+static int	to_over = 0;
+
+void	p(char *str)
+{
+	printf("%s", str);
+}
+
+void	n()
+{
+	char	b[512];
+
+	fgets(b, 512, stdin);
+	p(b);
+	if (to_over == 16930116) {
+		system("/bin/cat /home/user/level5/.pass");
+	}
+}
+
+int		main()
+{
+	n();
+    return (0);
+}

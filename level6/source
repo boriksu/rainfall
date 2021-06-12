@@ -1,1 +1,25 @@
-source
+#include <stdlib.h>
+#include <stdio.h>
+#include <string.h>
+
+int	m()
+{
+	puts("Nope");
+}
+
+int	n()
+{
+	system("/bin/cat /home/user/level7/.pass");
+}
+
+int	main(int argc, char **argv)
+{
+	char	*s;
+	int (**src)(void);
+
+	s = malloc(64);
+	src = malloc(sizeof(*src));
+	*src = &m;
+	strcpy(s, argv[1]);
+	return ((*src)());
+}

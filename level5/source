@@ -1,1 +1,27 @@
+#include <stdio.h>
+#include <stdlib.h>
 
+void	o()
+{
+	system("/bin/sh");
+	exit(1);
+}
+
+void	n()
+{
+	char	f[512];
+    char	*str;
+
+    str = *f;
+
+	fgets(str, 512, stdin);
+    printf(f);
+    exit(1);
+}
+
+
+int	main(void)
+{
+	n();
+	return (0);
+}
