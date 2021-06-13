@@ -37,6 +37,7 @@ gdb показал наличие трех функций: main, p и pp
 функция p вызывается дважды внутри pp
 выходной буфер при кол-во символов больше 20 на первом входе будет по составу:
 20 байт + 20 байт + ' ' + 20 байт
+1 arg + 2 arg + ' ' + 2 arg
 
 ./bonus0
  -
@@ -45,7 +46,6 @@ gdb показал наличие трех функций: main, p и pp
 asdfghjklASDFGHJKLasdfghjkl
 123456789asdfghjkl12asdfghjklASDFGHJKLas�� asdfghjklASDFGHJKLas��
 Segmentation fault (core dumped)
-
 
 смещение адреса возврата main составит 9 благодаря генератору https://wiremask.eu/tools/buffer-overflow-pattern-generator/?
 

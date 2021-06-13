@@ -2,30 +2,30 @@
 #include <time.h>
 #include <stdlib.h>
 
-char password[80];
+char pass[80];
 
 void m()
 {
-  printf("%s - %d\n", password, time(0));
+    printf("%s - %d\n", pass, time(0));
 }
 
 int main(int argc,char **argv)
 {
-  char *str1;
-  char *str2;
-  FILE *fs;
+    char *buf1;
+    char *buf2;
+    FILE *des;
 
-  str1 = (char *)malloc(8);
-  *str1 = 1;
+    str1 = (char *)malloc(8);
+    *str1 = 1;
 
-  str2 = (char *)malloc(8);
-  *str2 = 2;
+    buf2 = (char *)malloc(8);
+    *buf2 = 2;
 
-  strcpy(str1[1], argv[1]);
-  strcpy(str2[1], argv[2]);
+    strcpy(buf1[1], argv[1]);
+    strcpy(buf2[1], argv[2]);
 
-  fs = fopen("/home/user/level8/.pass","r");
-  fgets(password, 68, fs);
-  puts("~~");
-  return (0);
+    des = fopen("/home/user/level8/.pass","r");
+    fgets(pass, 68, des);
+    puts("~~");
+    return (0);
 }

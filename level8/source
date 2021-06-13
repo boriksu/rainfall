@@ -2,12 +2,11 @@
 #include <string.h>
 #include <stdlib.h>
 
-char	*auth = NULL;
-char	*service = NULL;
-
 int		main()
 {
 	char	buf[128];
+	char	*auth = NULL;
+	char	*service = NULL;
 	
 	while (1)
 	{

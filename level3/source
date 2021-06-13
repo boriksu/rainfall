@@ -1,12 +1,11 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-static char	str[] = "Wait what?!\n";
-static int			to_over = 0;
-
 void	v()
 {
-	char			b[512];
+	char	b[512];
+	char	str[] = "Wait what?!\n";
+	int		to_over = 0;
 
 	fgets(b, 512, stdin);
 	printf("%s", b);

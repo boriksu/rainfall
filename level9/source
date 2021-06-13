@@ -1,38 +1,41 @@
-#include <unistd.h>
 #include <cstring>
 
 class N {
-public:
-	int nb;
-	int (N::*func)(N &);
-	char annotation[100];
 
-	N(int mean) : nb(mean)
-	{
-		this->func = &N::operator+;
-	}
-	int operator+(N &right)
-	{
-		return this->nb + right.nb;
-	}
-	int operator-(N &right)
-	{
-		return this->nb - right.nb;
-	}
-	void setAnnotation(char *str)
-	{
-		memcpy(this->annotation, str, strlen(str));
-	}
+	public:
+		N(int value) { this->n = value; }
+		N operator+(N &rhs) { return N(rhs.n + this->n); }
+		N operator-(N &rhs) { return N(this->n - rhs.n); }
+
+		void setAnnotation(char *str)
+		{
+			size_t len;
+
+			len = strlen(str);
+			memcpy(this->str, str, len);
+			return;
+		}
+
+	private:
+		int n;
+		char *str;
 };
 
-int		main(int ac, char **av)
+
+int main(int argc,char **argv)
 {
-	if (ac < 1)
-		_exit(1);
+	N *f;
+	N *s;
+	int ret;
 
-	N *a = new N(5);
-	N *b = new N(6);
+	if (argc < 2)
+	_exit(1);
 
-	a->setAnnotation(av[1]);
-	return (b->*(b->func))(*a);
+	f = new N(5);
+	s = new N(6);
+
+	f->setAnnotation(argv[1]);
+
+	ret = (***s)(s, f);
+	return ret;
 }

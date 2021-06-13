@@ -20,7 +20,7 @@
     0x08048390  _start
     0x080483c0  __do_global_dtors_aux
     0x08048420  frame_dummy
-    0x08048444  run                     <= адрес run
+    0x08048444  run                     <= адрес run, what is it?! need to check
     0x08048480  main
     0x080484a0  __libc_csu_init
     0x08048510  __libc_csu_fini

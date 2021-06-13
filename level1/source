@@ -1,16 +1,17 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-void run(void) {
+void run()
+{
 	char	s[] = "Good... Wait what?";
 
 	fwrite((void*)s, sizeof(s), 1, 1);
 	system("/bin/sh");
-	return;
 }
 
-int	main() {
-	char	str[64];
+int	main()
+{
+	char	str[80];
 
 	gets(str);
 	return (0);

@@ -1,8 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-static int	to_over = 0;
-
 void	p(char *str)
 {
 	printf("%s", str);
@@ -11,6 +9,7 @@ void	p(char *str)
 void	n()
 {
 	char	b[512];
+	int	to_over = 0;
 
 	fgets(b, 512, stdin);
 	p(b);

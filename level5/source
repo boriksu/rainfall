@@ -20,7 +20,7 @@ void	n()
 }
 
 
-int	main(void)
+int	main()
 {
 	n();
 	return (0);
